@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "cumulytics"
 include(":app")
- 
+include(":cumulytics")
+include(":cumulytics-clevertap")
+include(":cumulytics-logging-interceptor")

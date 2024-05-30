@@ -1,20 +1,17 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.velocityappsdj.cumulytics"
+    namespace = "com.velocityappsdj.cumulytics_clevertap"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.velocityappsdj.cumulytics"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -40,16 +37,11 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.clevertap.android.sdk)
+    implementation (libs.firebase.messaging)
     implementation(project(":cumulytics"))
-
-    //optional clients
-    implementation(project(":cumulytics-clevertap"))
-
-    //logging-interceptor
-    implementation(project(":cumulytics-logging-interceptor"))
 }
