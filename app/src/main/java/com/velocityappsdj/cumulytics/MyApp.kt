@@ -11,15 +11,16 @@ class MyApp : Application() {
 
     override fun onCreate() {
 
-        cumulyticsInstance =
-            CumulyticsInstance.Builder().addClient(
+        cumulyticsInstance = CumulyticsInstance
+            .Builder()
+            .addClient(
                 ClevertapClient(
-                    this,
-                    "", ""
+                    this, "", ""
                 )
-            ).addInterceptor(LoggingInterceptor())
-
-                .build()
+            )
+            .addClient(CustomAnalyticsClient())
+            .addInterceptor(LoggingInterceptor())
+            .build()
         cumulyticsInstance.init(this)
 
         super.onCreate()
