@@ -11,9 +11,9 @@ import com.velocityappsdj.cumulytics.model.Event
 
 
 class ClevertapClient(
-    val application: Application,
-    val clevertapAccountId: String,
-    val clevertapToken: String
+    private val application: Application,
+    private val clevertapAccountId: String,
+    private val clevertapToken: String
 ) : AnalyticsClient, UserProperties {
 
     companion object {
@@ -45,8 +45,6 @@ class ClevertapClient(
     }
 
     override fun setUserParams(params: HashMap<String, String>) {
-        CleverTapAPI.getDefaultInstance(application.applicationContext)?.let {
-            it.pushProfile(params.toMap())
-        }
+        CleverTapAPI.getDefaultInstance(application.applicationContext)?.pushProfile(params.toMap())
     }
 }
