@@ -69,22 +69,22 @@ You can send event with event name, params(optional) also choose not to send par
 ```
   MyApp.cumulyticsInstance.sendEvent(Event("user_login"))
 
-        MyApp.cumulyticsInstance.sendEvent(
-            Event(
-                "user_info_loaded", hashMapOf(
-                    "os" to "android",
-                    "version" to "1.0"
-                )
-            )
-        )
+  MyApp.cumulyticsInstance.sendEvent(
+      Event(
+          "user_info_loaded", hashMapOf(
+              "os" to "android",
+              "version" to "1.0"
+          )
+      )
+  )
 
-        MyApp.cumulyticsInstance.sendEvent(
-            Event(
-                eventName = "user_info_displayed", exclude = setOf(
-                    ClevertapClient::class.java
-                )
-            )
-        )
+  MyApp.cumulyticsInstance.sendEvent(
+      Event(
+          eventName = "user_info_displayed", exclude = setOf(
+              ClevertapClient::class.java
+          )
+      )
+  )
 ```
 
 
