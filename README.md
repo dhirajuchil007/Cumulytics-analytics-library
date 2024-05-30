@@ -10,7 +10,7 @@
   <li>Library is modular with ability to add only required dependecies</li>
 </ul>
 
-    ```
+    
     implementation(project(":cumulytics"))
 
     //optional clients
@@ -19,18 +19,18 @@
     //logging-interceptor
     implementation(project(":cumulytics-logging-interceptor"))
 
-```
+    
 </p>
 
 <p>
   You can initialize it in your app's application class
-  
-  ```
+
+```
 
 class MyApp : Application() {
-companion object {
-lateinit var cumulyticsInstance: CumulyticsInstance
-}
+  companion object {
+    lateinit var cumulyticsInstance: CumulyticsInstance
+  }
 
     override fun onCreate() {
 
@@ -51,24 +51,23 @@ lateinit var cumulyticsInstance: CumulyticsInstance
 
 }
 
-  ```
+```
 
 Then register the user
 ```
 
 MyApp.cumulyticsInstance.setUser(
-"dhiraj", hashMapOf(
-"name" to "Dhiraj",
-"age" to "25"
-)
+  "dhiraj", hashMapOf(
+  "name" to "Dhiraj",
+  "age" to "25"
+  )
 )
 
 ```
 
 You can send event with event name, params(optional) also choose not to send particular events to certain frameworks
 ```
-
-       MyApp.cumulyticsInstance.sendEvent(Event("user_login"))
+  MyApp.cumulyticsInstance.sendEvent(Event("user_login"))
 
         MyApp.cumulyticsInstance.sendEvent(
             Event(
@@ -86,8 +85,10 @@ You can send event with event name, params(optional) also choose not to send par
                 )
             )
         )
-
 ```
+
+
+
 
 You can create custom analytics client
 ```
