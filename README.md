@@ -133,4 +133,5 @@ cumulyticsInstance = CumulyticsInstance
     .build()
 
 ```
+
 </p>
