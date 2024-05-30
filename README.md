@@ -125,7 +125,7 @@ cumulyticsInstance = CumulyticsInstance
     .Builder()
     .addClient(
         ClevertapClient(
-        this, "", ""
+        this, "YOUR-ACCOUNT-ID", "YOUR-TOKEN"
         )
     )
     .addClient(CustomAnalyticsClient())
