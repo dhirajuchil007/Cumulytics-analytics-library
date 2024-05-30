@@ -10,7 +10,7 @@
   <li>Library is modular with ability to add only required dependecies</li>
 </ul>
 
-```
+    ```
     implementation(project(":cumulytics"))
 
     //optional clients
@@ -18,6 +18,7 @@
 
     //logging-interceptor
     implementation(project(":cumulytics-logging-interceptor"))
+
 ```
 </p>
 
@@ -25,10 +26,11 @@
   You can initialize it in your app's application class
   
   ```
-  class MyApp : Application() {
-    companion object {
-        lateinit var cumulyticsInstance: CumulyticsInstance
-    }
+
+class MyApp : Application() {
+companion object {
+lateinit var cumulyticsInstance: CumulyticsInstance
+}
 
     override fun onCreate() {
 
@@ -48,20 +50,24 @@
     }
 
 }
+
   ```
 
 Then register the user
 ```
+
 MyApp.cumulyticsInstance.setUser(
-            "dhiraj", hashMapOf(
-                "name" to "Dhiraj",
-                "age" to "25"
-            )
+"dhiraj", hashMapOf(
+"name" to "Dhiraj",
+"age" to "25"
 )
+)
+
 ```
 
 You can send event with event name, params(optional) also choose not to send particular events to certain frameworks
 ```
+
        MyApp.cumulyticsInstance.sendEvent(Event("user_login"))
 
         MyApp.cumulyticsInstance.sendEvent(
@@ -80,5 +86,50 @@ You can send event with event name, params(optional) also choose not to send par
                 )
             )
         )
+
+```
+
+You can create custom analytics client
+```
+
+class CustomAnalyticsClient : AnalyticsClient, UserProperties {
+override fun init(context: Context) {
+//do stuff
+}
+
+    override fun sendEvent(event: Event) {
+        //do stuff
+    }
+
+    override fun sendAll() {
+        //do stuff
+    }
+
+    override fun setUser(userId: String, params: HashMap<String, String>?) {
+        //do stuff
+    }
+
+    override fun setUserParams(params: HashMap<String, String>) {
+        //do stuff
+    }
+
+}
+
+```
+
+Then add it while building your CumulyticsInstance
+```
+
+cumulyticsInstance = CumulyticsInstance
+    .Builder()
+    .addClient(
+        ClevertapClient(
+        this, "", ""
+        )
+    )
+    .addClient(CustomAnalyticsClient())
+    .addInterceptor(LoggingInterceptor())
+    .build()
+
 ```
 </p>
